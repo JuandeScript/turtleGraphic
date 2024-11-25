@@ -1,21 +1,29 @@
 #include <stdio.h>
-#define BASE 50
-#define HIGH 50
+#include "functions.h"
+#define ROW 50
+#define COLUMN 50
 
 int main() {
-    int board[BASE][HIGH] = {0};
+    int board[ROW][COLUMN] = {0};
     int command = 0;
+    int pen = 0;
+    int position = 0;
 
     printf("Welcome to 'Turtle graphic', please enter a command\n");
     printf("Commands:\n1  - Pen up\n2  - Pen down\n3  - Turn right\n4  - Turn left\n5  - Move forward 10 spaces\n6  - Printf graphic\n7 - Commands list\n9  - Exit\n");
     scanf("%d", &command);
 
+
     while(command != 9) {
+
+
         if(command == 1) {
             printf("Pen up\n");
+            pen = 0;
         }
         else if(command == 2) {
             printf("Pen down\n");
+            pen = 1;
         }
         else if(command == 3) {
             printf("Turned right\n");
@@ -28,6 +36,7 @@ int main() {
         }
         else if(command == 6) {
             printf("Printing graphic\n");
+            printGraphic(board, ROW, COLUMN);
         }
         else if(command == 7) {
             printf("Commands:\n1  - Pen up\n2  - Pen down\n3  - Turn right\n4  - Turn left\n5  - Move forward 10 spaces\n6  - Printf graphic\n7 - Commands list\n9  - Exit\n");
