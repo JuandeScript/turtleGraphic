@@ -1,51 +1,66 @@
 #include <stdio.h>
 #include "functions.h"
-#define ROW 50
-#define COLUMN 50
 
 int main() {
-    int board[ROW][COLUMN] = {0};
+    int x = 0;
+    int y = 0;
     int command = 0;
     int pen = 0;
-    int position = 0;
+    int facing = 3; 
+    int spaces;
 
-    printf("Welcome to 'Turtle graphic', please enter a command\n");
-    printf("Commands:\n1  - Pen up\n2  - Pen down\n3  - Turn right\n4  - Turn left\n5  - Move forward 10 spaces\n6  - Printf graphic\n7 - Commands list\n9  - Exit\n");
+    board[x][y] = UP;
+
+    printf("Welcome to 'Turtle graphics', please enter a command\n");
+    printf("Commands:\n1  - Pen up\n2  - Pen down\n3  - Turn right\n4  - Turn left\n5  - Move forward X spaces\n6  - Printf graphic\n9  - Exit\n");
     scanf("%d", &command);
 
 
     while(command != 9) {
-
-
         if(command == 1) {
-            printf("Pen up\n");
-            pen = 0;
-        }
-        else if(command == 2) {
-            printf("Pen down\n");
             pen = 1;
         }
+        else if(command == 2) {
+            pen = 0;
+        }
         else if(command == 3) {
-            printf("Turned right\n");
+            facing--;
+
+            if(facing == 0) {
+                facing = 4;
+            }
         }
         else if(command == 4) {
-            printf("Turned left\n");
+            facing++;
+
+            if(facing == 5) {
+                facing = 1;
+            }
         }
         else if(command == 5) {
-            printf("Moved 10 spaces\n");
+            scanf("%d", &spaces);
+            if(facing == 1) {
+                x -= spaces;
+            }
+            else if(facing == 2) {
+                y += spaces;
+            }
+            else if(facing == 3) {
+                x += spaces;
+            }
+            else if(facing == 4) {
+                y -= spaces;
+            }
+
+            move(x, y, pen);
         }
         else if(command == 6) {
-            printf("Printing graphic\n");
             printGraphic(board, ROW, COLUMN);
-        }
-        else if(command == 7) {
-            printf("Commands:\n1  - Pen up\n2  - Pen down\n3  - Turn right\n4  - Turn left\n5  - Move forward 10 spaces\n6  - Printf graphic\n7 - Commands list\n9  - Exit\n");
         }
         else {
             printf("Invalid input\n");
         }
 
-        printf("What would you like to do next? (Press 7 to display the commands list)\n");
         scanf("%d", &command);
     }
     
